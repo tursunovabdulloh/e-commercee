@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -77,6 +77,12 @@ function Login() {
           <button type="button" className={style.btnn}>
             GUEST USER
           </button>
+          <div className={style.lastDiv}>
+            <p className={style.lastText}>Not a member yet?</p>
+            <Link to="/register" className={style.loginText}>
+              Register
+            </Link>
+          </div>
         </form>
       </div>
     </>

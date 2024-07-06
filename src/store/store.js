@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./registerStore";
-import { setupListeners } from "@reduxjs/toolkit/query";
-export const store = configureStore({
+import userReducer from "./userSlice";
+
+const store = configureStore({
   reducer: {
-    login: userReducer,
+    user: userReducer,
   },
 });
 
-setupListeners(store.dispatch);
+export default store;
