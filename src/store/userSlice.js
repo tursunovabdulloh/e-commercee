@@ -12,12 +12,12 @@ const userSlice = createSlice({
     login: (state, { payload }) => {
       state.user = payload;
       localStorage.setItem("user", JSON.stringify(payload));
-      state.authChange = true; // Autentifikatsiya holatini yangilash
+      state.authChange = true;
     },
     logout: (state) => {
       state.user = null;
       localStorage.removeItem("user");
-      state.authChange = false; // Autentifikatsiya holatini yangilash
+      state.authChange = false;
     },
     authChange: (state, { payload }) => {
       state.authChange = payload;
