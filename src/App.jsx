@@ -12,11 +12,10 @@ import Login from "./pages/Login";
 const ProtectedRoutes = ({ children }) => {
   const user = useSelector((state) => state.user.user);
 
-  if (!user) {
-    return <Navigate to="/" replace />;
+  if (user) {
+    return <Navigate to="/" />;
   }
-
-  return children;
+  return <Navigate to="/login" />;
 };
 const routes = createBrowserRouter([
   {
