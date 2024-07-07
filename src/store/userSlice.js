@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  users: JSON.parse(localStorage.getItem("user")) || null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   authChange: false,
 };
 
@@ -10,15 +10,17 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, { payload }) => {
-      state.users = payload;
+      state.user = payload;
       localStorage.setItem("user", JSON.stringify(payload));
+      state.authChange = true; // Autentifikatsiya holatini yangilash
     },
     logout: (state) => {
-      state.users = null;
+      state.user = null;
       localStorage.removeItem("user");
+      state.authChange = false; // Autentifikatsiya holatini yangilash
     },
-    authChange: (state) => {
-      state.authChange = true;
+    authChange: (state, { payload }) => {
+      state.authChange = payload;
     },
   },
 });

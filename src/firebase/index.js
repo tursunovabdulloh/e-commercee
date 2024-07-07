@@ -1,6 +1,8 @@
+// firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBNng0YTNXh3XxHcwa4Yg_LqT9MD_54SsA",
   authDomain: "e-commerce-1c42e.firebaseapp.com",

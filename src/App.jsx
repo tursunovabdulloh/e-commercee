@@ -9,12 +9,15 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
-function ProtectedRoutes({ children }) {
-  const { user } = useSelector((state) => state.user);
+const ProtectedRoutes = ({ children }) => {
+  const user = useSelector((state) => state.user.user);
 
-  return user ? children : <Navigate to="/login" />;
-}
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
 
+  return children;
+};
 const routes = createBrowserRouter([
   {
     path: "/",
