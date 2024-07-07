@@ -10,9 +10,17 @@ function Login() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous error
+
+    if (!logindata.email || !logindata.password) {
+      setError("Please fill out all fields.");
+      return;
+    }
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -20,18 +28,17 @@ function Login() {
         logindata.password
       );
       navigate("/");
-
-      const user = userCredential.user;
     } catch (error) {
       console.error("Error signing in with password and email", error);
+      setError("Invalid email or password.");
     }
   };
-  console.log();
 
   return (
     <div className={style.wrapper}>
       <h2 className={style.t}>Login</h2>
       <form className={style.box} onSubmit={handleSubmit}>
+        {error && <p className={style.error}>{error}</p>}
         <div className={style.emailDiv}>
           <p className={style.inputText}>Email</p>
           <input
