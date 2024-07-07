@@ -27,6 +27,7 @@ function Login() {
       console.error("Error signing in with password and email", error);
     }
   };
+  console.log();
 
   return (
     <div className={style.wrapper}>
@@ -56,9 +57,6 @@ function Login() {
         </div>
         <button type="submit" className={style.btn}>
           LOGIN
-        </button>
-        <button type="button" className={style.btnn}>
-          GUEST USER
         </button>
         <div className={style.lastDiv}>
           <p className={style.lastText}>Not a member yet?</p>
