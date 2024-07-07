@@ -58,9 +58,9 @@ const { Header, Sider, Content } = Layout;
 
 export default function Home() {
   return (
-    <Layout className="min-h-screen bg-gray-100">
+    <Layout className="bg-gray-100 min-h-screen">
       <Sider collapsible width={250} className="bg-gray-800">
-        <div className="logo p-4 text-white text-center text-xl font-bold mb-8">
+        <div className="logo text-white text-center text-xl font-bold mb-8">
           My Dashboard
         </div>
         <Menu
