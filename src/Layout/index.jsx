@@ -4,9 +4,9 @@ import { Outlet } from "react-router-dom";
 export default function index() {
   return (
     <>
-      <header>header</header>
       <main>
         <Outlet />
+        <header>header</header>
       </main>
       <footer>footer</footer>
     </>
