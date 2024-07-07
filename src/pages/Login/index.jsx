@@ -20,9 +20,8 @@ function Login() {
         logindata.password
       );
       navigate("/");
-      // Signed in
+
       const user = userCredential.user;
-      // ...
     } catch (error) {
       console.error("Error signing in with password and email", error);
     }
