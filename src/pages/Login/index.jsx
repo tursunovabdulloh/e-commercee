@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { message } from "antd";
 import style from "./style.module.css";
 
 function Login() {
@@ -10,27 +11,26 @@ function Login() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous error
 
     if (!logindata.email || !logindata.password) {
-      setError("Please fill out all fields.");
+      message.error("Please fill out all fields.");
       return;
     }
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         logindata.email,
         logindata.password
       );
+      message.success("Successfully logged in!");
       navigate("/");
     } catch (error) {
       console.error("Error signing in with password and email", error);
-      setError("Invalid email or password.");
+      message.error("Invalid email or password.");
     }
   };
 
@@ -38,7 +38,6 @@ function Login() {
     <div className={style.wrapper}>
       <h2 className={style.t}>Login</h2>
       <form className={style.box} onSubmit={handleSubmit}>
-        {error && <p className={style.error}>{error}</p>}
         <div className={style.emailDiv}>
           <p className={style.inputText}>Email</p>
           <input
