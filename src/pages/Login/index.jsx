@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { message } from "antd";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/userSlice";
+import "antd/dist/reset.css"; // Ant Design CSS
 import style from "./style.module.css";
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [logindata, setLoginData] = useState({
     email: "",
     password: "",
@@ -21,11 +25,14 @@ function Login() {
     }
 
     try {
-      await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         logindata.email,
         logindata.password
       );
+      const user = userCredential.user;
+      console.log("Logged in user:", user);
+      dispatch(login(user)); // Add this line to dispatch the login action
       message.success("Successfully logged in!");
       navigate("/");
     } catch (error) {
